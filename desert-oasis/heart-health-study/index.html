@@ -29,6 +29,13 @@
       width: 275px; /* Set the width to 275px */
     }
 
+    /* Add border between logo and H1 */
+    .logo-border {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+
     /* Shrink consent text to 14px */
     .consent-text {
       font-size: 14px;
@@ -60,13 +67,25 @@
       width: 100%;
     }
 
+    /* Increase the size of radio buttons and add spacing */
+    .form-check-input {
+      width: 20px;
+      height: 20px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .form-check {
+      margin-bottom: 15px; /* Space between radio button and text */
+    }
+
   </style>
 </head>
 <body>
   <div class="container mt-5">
     <div class="form-container">
       <!-- Branding: Logo Image -->
-      <img src="../assets/logo.svg" alt="Desert Oasis Healthcare Logo" class="logo">
+      <img src="../assets/logo.svg" alt="Desert Oasis Healthcare Logo" class="logo logo-border">
       
       <h1 class="mb-4 text-center">Heart Health Monitoring Signup</h1>
       <p class="text-center">We appreciate your decision to take this proactive step with Desert Oasis Healthcare towards better heart health. To continue with your participation and receive the iRhythm Zio monitor by mail at no cost to you, please enter your information below.</p>
