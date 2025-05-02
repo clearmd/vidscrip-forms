@@ -124,7 +124,7 @@
 
     .separator {
       border-bottom: 1px solid #ddd;
-      margin: 10px 0;
+      margin: 18px 0;
     }
 
   </style>
@@ -177,11 +177,14 @@
           <label for="dob" class="form-label">Date of Birth:</label>
           <input type="date" id="dob" name="dob" class="form-control" required />
         </div>
-
-        <div class="separator"></div>
       
         <div class="mb-3 consent-text text-left">
+
+          <div class="separator"></div>
+          
           <label for="consent" class="form-label">By submitting this form, I authorize Desert Oasis Healthcare to share and use my health information as necessary to coordinate and provide the Zio monitor service. I consent to be contacted by DOHC or iRhythm regarding this request by phone, email, or text, in accordance with HIPAA privacy rules.</label><br>
+          
+          <div class="separator"></div>
       
           <div class="form-check">
             <input type="radio" id="start" name="consent" value="I'm ready to get started" class="form-check-input" required>
@@ -288,16 +291,15 @@
   <script>
     // Initialize the Google Places Autocomplete
     function initAutocomplete() {
-      // Create an autocomplete object attached to the 'address' input field
-      var input = document.getElementById('address');
-      var options = {
-        types: ['geocode'], // restrict results to address
-        componentRestrictions: { country: "us" } // Optionally restrict to a specific country
+      const input = document.getElementById('address');
+      const options = {
+        componentRestrictions: { country: 'us' },
+        fields: ['address_components', 'geometry'],
+        types: ['address'],
       };
-  
-      // Create the autocomplete object and link it to the address input field
+
       const placeAutocomplete = new google.maps.places.PlaceAutocompleteElement(input, options);
-  
+      
       // Add an event listener to handle when a user selects an address from the dropdown
       placeAutocomplete.addEventListener('gmp-placeselect', () => {
         const place = placeAutocomplete.getPlace();
