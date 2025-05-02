@@ -289,39 +289,42 @@
       };
   
       // Create the autocomplete object and link it to the address input field
-      var autocomplete = new google.maps.places.Autocomplete(input, options);
+      const placeAutocomplete = new google.maps.places.PlaceAutocompleteElement(input, options);
   
       // Add an event listener to handle when a user selects an address from the dropdown
-      autocomplete.addListener('place_changed', function() {
-        var place = autocomplete.getPlace();
-        if (!place.geometry) {
-          console.log("No details available for input: " + place.name);
-          return;
-        }
-  
-        // Autofill address-related fields (city, state, postal code, country)
-        var city = '';
-        var state = '';
-        var postalCode = '';
-        var country = '';
-  
-        for (var i = 0; i < place.address_components.length; i++) {
-          var component = place.address_components[i];
-          if (component.types.includes('locality')) {
-            city = component.long_name;
+      placeAutocomplete.addEventListener('gmp-placeselect', () => {
+        const place = placeAutocomplete.getPlace();
+        const addressComponents = place.address_components;
+
+        // Initialize variables to store address components
+        let city = '';
+        let state = '';
+        let postalCode = '';
+        let country = '';
+
+        // Iterate over address components to extract relevant information
+        addressComponents.forEach(component => {
+          const componentType = component.types[0];
+
+          switch (componentType) {
+            case 'locality':
+              city = component.long_name;
+              break;
+            case 'administrative_area_level_1':
+              state = component.long_name;
+              break;
+            case 'postal_code':
+              postalCode = component.long_name;
+              break;
+            case 'country':
+              country = component.long_name;
+              break;
+            default:
+              break;
           }
-          if (component.types.includes('administrative_area_level_1')) {
-            state = component.long_name;
-          }
-          if (component.types.includes('postal_code')) {
-            postalCode = component.long_name;
-          }
-          if (component.types.includes('country')) {
-            country = component.long_name;
-          }
-        }
-  
-        // Fill the fields with the values
+        });
+
+        // Populate the form fields with the extracted values
         document.getElementById('city').value = city;
         document.getElementById('state').value = state;
         document.getElementById('postal_code').value = postalCode;
