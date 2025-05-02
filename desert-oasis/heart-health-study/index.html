@@ -140,14 +140,15 @@
       z-index: 1000;
     }
 
-    .autocomplete-suggestions div {
+    .suggestion-item {
       padding: 8px;
       cursor: pointer;
     }
 
-    .autocomplete-suggestions div:hover {
+    .suggestion-item:hover {
       background-color: #f0f0f0;
     }
+
 
 
   </style>
@@ -322,7 +323,7 @@
       if (query.length > 2) {
         try {
           const predictions = await fetchAutocompleteSuggestions(query, apiKey);
-          displaySuggestions(predictions);
+          displaySuggestions(predictions, suggestionsContainer);
         } catch (error) {
           console.error('Error fetching autocomplete suggestions:', error);
         }
@@ -354,12 +355,12 @@
     return data.suggestions || [];
   }
 
-  function displaySuggestions(suggestions) {
-    console.log(`suggestions`, suggestions)
+  function displaySuggestions(suggestions, suggestionsContainer) {
     suggestionsContainer.innerHTML = '';
     suggestions.forEach(suggestion => {
       const div = document.createElement('div');
       div.textContent = suggestion.placePrediction.text.text;
+      div.classList.add('suggestion-item');
       div.addEventListener('click', () => {
         input.value = suggestion.placePrediction.text.text;
         populateAddressFields(suggestion.placePrediction.placeId);
@@ -368,6 +369,7 @@
       suggestionsContainer.appendChild(div);
     });
   }
+
 
   async function populateAddressFields(placeId) {
     const placeDetails = await fetchPlaceDetails(placeId, apiKey);
