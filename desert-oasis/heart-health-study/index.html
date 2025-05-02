@@ -143,6 +143,7 @@
       border: 1px solid #ccc;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       z-index: 1000;
+      display: none;
     }
 
     .suggestion-item {
@@ -362,11 +363,13 @@
 
   function displaySuggestions(suggestions, suggestionsContainer, input) {
     suggestionsContainer.innerHTML = '';
+    suggestionsContainer.style.display = 'block';
     suggestions.forEach(suggestion => {
       const div = document.createElement('div');
       div.textContent = suggestion.placePrediction.text.text;
       div.classList.add('suggestion-item');
       div.addEventListener('click', () => {
+        suggestionsContainer.style.display = 'hidden';
         input.value = suggestion.placePrediction.text.text;
         populateAddressFields(suggestion.placePrediction.placeId);
         suggestionsContainer.innerHTML = '';
