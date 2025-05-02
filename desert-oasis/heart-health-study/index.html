@@ -67,16 +67,17 @@
       width: 100%;
     }
 
-    /* Adjust radio button size and spacing */
+    /* Flexbox alignment for radio buttons */
+    .form-check {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px; /* Space between radio buttons */
+    }
+
     .form-check-input {
       width: 20px;
       height: 20px;
-      margin-top: 6px; /* Add space above the radio buttons */
-    }
-
-    .form-check {
-      margin-bottom: 15px; /* Add space between radio buttons */
-      display: block;
+      margin-right: 10px; /* Space between the radio button and label */
     }
 
     /* Adjust font size for mobile responsiveness */
@@ -102,7 +103,7 @@
       <h1 class="mb-4 text-left">Heart Health Monitoring Signup</h1>
       <p class="text-left">We appreciate your decision to take this proactive step with Desert Oasis Healthcare towards better heart health. To continue with your participation and receive the iRhythm Zio monitor by mail at no cost to you, please enter your information below.</p>
 
-      <form id="infoForm" action="https://script.google.com/macros/s/AKfycbxixKXmbk3kN9gJd2GXFz2pgkNogZoMbKH_nshJ7WvzvyENEQKD1SBeUUlWZgcXDHf1/exec" method="POST">
+      <form id="infoForm" action="YOUR_GOOGLE_SCRIPT_WEB_APP_URL" method="POST">
         <!-- Hidden field for Response Id -->
         <input type="hidden" id="responseId" name="responseId" value="">
 
@@ -124,6 +125,7 @@
         <div class="mb-3 consent-text text-left">
           <label for="consent" class="form-label">By submitting this form, I authorize Desert Oasis Healthcare to share and use my health information as necessary to coordinate and provide the Zio monitor service. I consent to be contacted by DOHC or iRhythm regarding this request by phone, email, or text, in accordance with HIPAA privacy rules.</label><br>
 
+          <!-- Flexbox for radio buttons -->
           <div class="form-check">
             <input type="radio" id="start" name="consent" value="I'm ready to get started" class="form-check-input" required>
             <label for="start" class="form-check-label">I'm ready to get started.</label>
