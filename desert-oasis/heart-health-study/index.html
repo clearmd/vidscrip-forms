@@ -321,7 +321,9 @@
   async function initAutocomplete() {
     const input = document.getElementById('address');
     const suggestionsContainer = document.getElementById('suggestions');
-    
+    const apiKey = 'AIzaSyDUJf5RwRQeWlPhraU89seR4kHfUmaiJL0';
+
+
     input.addEventListener('input', async () => {
       const query = input.value.trim();
       if (query.length > 2) {
