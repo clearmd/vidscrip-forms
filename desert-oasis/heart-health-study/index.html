@@ -314,6 +314,7 @@
   // Initialize the Google Places Autocomplete
   async function initAutocomplete() {
     const input = document.getElementById('address');
+    const suggestionsContainer = document.getElementById('suggestions');
     const apiKey = 'AIzaSyDUJf5RwRQeWlPhraU89seR4kHfUmaiJL0';
 
     input.addEventListener('input', async () => {
@@ -369,6 +370,7 @@
 
   async function populateAddressFields(placeId) {
     const placeDetails = await fetchPlaceDetails(placeId, apiKey);
+    
     const addressComponents = placeDetails.address_components;
 
     let city = '';
