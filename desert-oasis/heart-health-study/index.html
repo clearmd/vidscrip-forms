@@ -60,6 +60,7 @@
       width: 100%;
     }
 
+    /* Flexbox alignment for radio buttons */
     .form-check {
       display: flex;
       align-items: center;
@@ -72,6 +73,13 @@
       margin-right: 10px;
     }
 
+    /* Fix the radio button layout squish by adjusting flex */
+    .form-check label {
+      margin-left: 10px;
+      flex: 1;
+    }
+
+    /* Adjust font size for mobile responsiveness */
     @media (max-width: 768px) {
       h1 {
         font-size: 24px;
@@ -88,10 +96,14 @@
       height: 3rem;
     }
 
-    /* Success page styles */
+    /* Success page styles with border */
     .success-container {
       text-align: center;
       padding: 40px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 600px;
     }
 
   </style>
@@ -105,7 +117,7 @@
       <h1 class="mb-4 text-left">Heart Health Monitoring Signup</h1>
       <p class="text-left">We appreciate your decision to take this proactive step with Desert Oasis Healthcare towards better heart health. To continue with your participation and receive the iRhythm Zio monitor by mail at no cost to you, please enter your information below.</p>
 
-      <form id="infoForm" action="https://script.google.com/macros/s/AKfycbxixKXmbk3kN9gJd2GXFz2pgkNogZoMbKH_nshJ7WvzvyENEQKD1SBeUUlWZgcXDHf1/exec" method="POST" onsubmit="showLoadingState();">
+      <form id="infoForm" action="YOUR_GOOGLE_SCRIPT_WEB_APP_URL" method="POST" onsubmit="showLoadingState();">
         <!-- Hidden field for Response Id -->
         <input type="hidden" id="responseId" name="responseId" value="">
 
@@ -125,63 +137,4 @@
         </div>
 
         <div class="mb-3 consent-text text-left">
-          <label for="consent" class="form-label">By submitting this form, I authorize Desert Oasis Healthcare to share and use my health information as necessary to coordinate and provide the Zio monitor service. I consent to be contacted by DOHC or iRhythm regarding this request by phone, email, or text, in accordance with HIPAA privacy rules.</label><br>
-
-          <div class="form-check">
-            <input type="radio" id="start" name="consent" value="I'm ready to get started" class="form-check-input" required>
-            <label for="start" class="form-check-label">I'm ready to get started.</label>
-          </div>
-
-          <div class="form-check">
-            <input type="radio" id="wait" name="consent" value="Wait - please have someone from DOHC contact me" class="form-check-input" required>
-            <label for="wait" class="form-check-label">Wait - please have someone from DOHC contact me to answer my questions before sending the Zio monitor.</label>
-          </div>
-        </div>
-
-        <button type="submit" class="btn btn-custom text-white submit-btn">Submit</button>
-      </form>
-
-      <!-- Loading State (Initially hidden) -->
-      <div id="loadingState" class="text-center" style="display: none;">
-        <div class="spinner-border text-primary" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-        <p>Please wait while we submit your information...</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Success Page (Initially hidden) -->
-  <div id="successState" class="success-container" style="display: none;">
-    <img src="../assets/logo.svg" alt="Desert Oasis Healthcare Logo" class="logo">
-    <h2>Thank you for completing the Desert Oasis Heart Health Monitoring signup form with your information.</h2>
-    <p>If you requested that someone from DOHC contact you regarding your questions before sending the Zio monitor, they will be in touch soon.</p>
-    <p>If you indicated that you're ready to get started, iRhythm will send you a text message once the Zio monitor is shipped to the address you provided, and will follow up with a phone call when it is delivered to you. You can expect delivery of the Zio monitor in about one week.</p>
-  </div>
-
-  <!-- Bootstrap JS and Popper.js (optional for some components) -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-
-  <script>
-    // Show loading state when form is being submitted
-    function showLoadingState() {
-      // Hide the form and show the loading state
-      document.getElementById("form-container").style.display = "none";
-      document.getElementById("loadingState").style.display = "block";
-    }
-
-    // Show the success state after form submission
-    function showSuccessState() {
-      document.getElementById("loadingState").style.display = "none";
-      document.getElementById("successState").style.display = "block";
-    }
-
-    // Simulate form submission process (for demo purposes)
-    document.getElementById("infoForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // Prevent actual form submission for demo
-      setTimeout(showSuccessState, 2000); // Simulate a successful submission with a delay
-    });
-  </script>
-</body>
-</html>
+          <label for="consent" class="form-label">By submitting this form, I
