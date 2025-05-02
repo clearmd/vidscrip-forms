@@ -88,6 +88,7 @@
     }
 
     .form-check label {
+      font-size: 16px;
       margin-left: 10px;
       flex: 1;
     }
@@ -125,6 +126,10 @@
     .separator {
       border-bottom: 1px solid #ddd;
       margin: 18px 0;
+    }
+
+    .address-container {
+      position: relative;
     }
 
     .autocomplete-suggestions {
@@ -316,14 +321,13 @@
   async function initAutocomplete() {
     const input = document.getElementById('address');
     const suggestionsContainer = document.getElementById('suggestions');
-    const apiKey = 'AIzaSyDUJf5RwRQeWlPhraU89seR4kHfUmaiJL0';
-
+    
     input.addEventListener('input', async () => {
       const query = input.value.trim();
       if (query.length > 2) {
         try {
-          const predictions = await fetchAutocompleteSuggestions(query, apiKey);
-          displaySuggestions(predictions, suggestionsContainer);
+          const predictions = await fetchAutocompleteSuggestions(query);
+          displaySuggestions(predictions, suggestionsContainer, input);
         } catch (error) {
           console.error('Error fetching autocomplete suggestions:', error);
         }
@@ -355,7 +359,7 @@
     return data.suggestions || [];
   }
 
-  function displaySuggestions(suggestions, suggestionsContainer) {
+  function displaySuggestions(suggestions, suggestionsContainer, input) {
     suggestionsContainer.innerHTML = '';
     suggestions.forEach(suggestion => {
       const div = document.createElement('div');
