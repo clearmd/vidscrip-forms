@@ -67,16 +67,28 @@
       width: 100%;
     }
 
-    /* Increase the size of radio buttons and add spacing */
+    /* Adjust radio button size and spacing */
     .form-check-input {
       width: 20px;
       height: 20px;
-      margin-top: 10px;
-      margin-bottom: 10px;
+      margin-top: 6px; /* Add space above the radio buttons */
     }
 
     .form-check {
-      margin-bottom: 15px; /* Space between radio button and text */
+      margin-bottom: 15px; /* Add space between radio buttons */
+      display: block;
+    }
+
+    /* Adjust font size for mobile responsiveness */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 24px; /* Limit H1 font size to 24px on mobile */
+      }
+    }
+
+    /* Left-align text */
+    .text-left {
+      text-align: left;
     }
 
   </style>
@@ -87,8 +99,8 @@
       <!-- Branding: Logo Image -->
       <img src="../assets/logo.svg" alt="Desert Oasis Healthcare Logo" class="logo logo-border">
       
-      <h1 class="mb-4 text-center">Heart Health Monitoring Signup</h1>
-      <p class="text-center">We appreciate your decision to take this proactive step with Desert Oasis Healthcare towards better heart health. To continue with your participation and receive the iRhythm Zio monitor by mail at no cost to you, please enter your information below.</p>
+      <h1 class="mb-4 text-left">Heart Health Monitoring Signup</h1>
+      <p class="text-left">We appreciate your decision to take this proactive step with Desert Oasis Healthcare towards better heart health. To continue with your participation and receive the iRhythm Zio monitor by mail at no cost to you, please enter your information below.</p>
 
       <form id="infoForm" action="YOUR_GOOGLE_SCRIPT_WEB_APP_URL" method="POST">
         <!-- Hidden field for Response Id -->
@@ -109,7 +121,7 @@
           <input type="date" id="dob" name="dob" class="form-control" required>
         </div>
 
-        <div class="mb-3 consent-text">
+        <div class="mb-3 consent-text text-left">
           <label for="consent" class="form-label">By submitting this form, I authorize Desert Oasis Healthcare to share and use my health information as necessary to coordinate and provide the Zio monitor service. I consent to be contacted by DOHC or iRhythm regarding this request by phone, email, or text, in accordance with HIPAA privacy rules.</label><br>
 
           <div class="form-check">
