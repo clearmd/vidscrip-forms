@@ -314,7 +314,7 @@
   // Initialize the Google Places Autocomplete
   async function initAutocomplete() {
     const input = document.getElementById('address');
-    const suggestionsContainer = document.getElementById('suggestions-container');
+    const suggestionsContainer = document.getElementById('suggestions');
     const apiKey = 'AIzaSyDUJf5RwRQeWlPhraU89seR4kHfUmaiJL0';
 
     input.addEventListener('input', async () => {
@@ -355,6 +355,7 @@
   }
 
   function displaySuggestions(suggestions) {
+    console.log(`suggestions`, suggestions)
     suggestionsContainer.innerHTML = '';
     suggestions.forEach(suggestion => {
       const div = document.createElement('div');
@@ -416,12 +417,6 @@
 
     const data = await response.json();
     return data;
-  }
-
-  // Display the autocomplete suggestions
-  function displaySuggestions(predictions) {
-    // Implement your logic to display the suggestions to the user
-    console.log(predictions);
   }
 
   // Initialize the autocomplete functionality
