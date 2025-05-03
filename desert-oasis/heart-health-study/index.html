@@ -309,11 +309,17 @@
       document.getElementById("loadingState").style.display = "none";
       document.getElementById("successState").style.display = "block";
     }
+
+    // Show form
+    function showForm() {
+      document.getElementById("loadingState").style.display = "none";
+      document.getElementById("form-container").style.display = "block";
+    }
   
     // Ensure the form only handles POST request
     document.getElementById("infoForm").addEventListener("submit", function(event) {
       event.preventDefault(); // Prevent actual form submission for demo
-      fetch('https://script.google.com/macros/s/AKfycbxixKXmbk3kN9gJd2GXFz2pgkNogZoMbKH_nshJ7WvzvyENEQKD1SBeUUlWZgcXDHf1/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbxZMgasauf6tn0JgVim2ws9UqVS0W5H42xb1kgkvZrXgrN5HN1IwZHx9EGydro6LlF2/exec', {
         method: 'POST',
         body: new FormData(event.target)
       })
@@ -322,10 +328,12 @@
           showSuccessState();
         } else {
           alert("There was an issue with the submission.");
+          showForm();
         }
       })
       .catch(error => {
         alert("There was an error submitting the form.");
+        showForm();
       });
     });
   </script>  
