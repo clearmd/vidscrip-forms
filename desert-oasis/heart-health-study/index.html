@@ -340,7 +340,7 @@
 
     placeAutocomplete = new google.maps.places.PlaceAutocompleteElement(inputElement, options);
 
-    placeAutocomplete.addEventListener('gmp-placeselect', () => {
+    placeAutocomplete.addEventListener('place_changed', () => {
       const place = placeAutocomplete.getPlace();
       displaySelectedAddress(place);
       addressFields.style.display = 'block';
@@ -433,14 +433,14 @@
   });
 
   function loadGoogleMapsAPI() {
-  const script = document.createElement('script');
-  script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initAutocomplete`;
-  script.async = true;
-  script.defer = true;
-  document.head.appendChild(script);
-}
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initAutocomplete`;
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  }
 
-loadGoogleMapsAPI();
+  loadGoogleMapsAPI();
 
 </script>
 
