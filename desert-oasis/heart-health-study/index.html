@@ -345,14 +345,12 @@
   async function initAutocomplete() {
     const input = document.getElementById('address');
     const suggestionsContainer = document.getElementById('suggestions');
-    input.addEventListener('blur', () => {
-      setTimeout(() => { suggestionsContainer.style.display = 'none'; }, 100);
-    });
+    setDobDefaultTo18YearsAgo();
 
     input.addEventListener('input', async () => {
       const query = input.value.trim();
       if (query.length > 2) {
-        try {
+        try { 
           const predictions = await fetchAutocompleteSuggestions(query);
           displaySuggestions(predictions, suggestionsContainer, input);
         } catch (error) {
@@ -361,7 +359,7 @@
       } else {
         suggestionsContainer.innerHTML = '';
       }
-    });
+    }).addEventListener('blur', async () => setTimeout(() => { suggestionsContainer.style.display = 'none'; }, 100));
   }
 
   async function fetchAutocompleteSuggestions(query) {
@@ -399,6 +397,8 @@
         populateAddressFields(suggestion.placePrediction.placeId);
         suggestionsContainer.innerHTML = '';
         suggestionsContainer.style.display = 'none';
+        autoSelectRadioButton();  // Automatically select the first radio button
+        showPulseEffect();        // Add pulsing effect to the first radio button
       });
       suggestionsContainer.appendChild(div);
     });
@@ -475,12 +475,20 @@
     firstRadio.checked = true;
   }
 
+  function setDobDefaultTo18YearsAgo() {
+    const dobField = document.getElementById('dob');
+    
+    // Set default value to 18 years ago
+    const today = new Date();
+    const eighteenYearsAgo = new Date(today.setFullYear(today.getFullYear() - 18));
+    dobField.value = eighteenYearsAgo.toISOString().split('T')[0];
+  }
+
+  // Init Google Maps
   (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
     key: apiKey,
     libraries: "places",
     v: "weekly",
-    // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
-    // Add other bootstrap parameters as needed, using camel case.
   });
 
   // Initialize the autocomplete functionality
