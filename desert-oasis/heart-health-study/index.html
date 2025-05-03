@@ -187,19 +187,21 @@
           <input type="text" id="address2" name="address2" class="form-control" />
         </div>
 
-        <div class="mb-3">
-          <label for="city" class="form-label">City:</label>
-          <input type="text" id="city" name="city" class="form-control" readonly />
-        </div>
+        <div class="mb-3 d-flex">
+          <div class="me-3 w-100">
+            <label for="city" class="form-label">City:</label>
+            <input type="text" id="city" name="city" class="form-control" readonly />
+          </div>
         
-        <div class="mb-3">
-          <label for="state" class="form-label">State:</label>
-          <input type="text" id="state" name="state" class="form-control" readonly />
-        </div>
+          <div class="me-3 w-50">
+            <label for="state" class="form-label">State:</label>
+            <input type="text" id="state" name="state" class="form-control" readonly maxlength="2" />
+          </div>
         
-        <div class="mb-3">
-          <label for="postal_code" class="form-label">Postal Code:</label>
-          <input type="text" id="postal_code" name="postal_code" class="form-control" readonly />
+          <div class="me-3 w-100">
+            <label for="postal_code" class="form-label">Postal Code:</label>
+            <input type="text" id="postal_code" name="postal_code" class="form-control" readonly />
+          </div>
         </div>
         
         <div class="mb-3">
@@ -398,6 +400,7 @@
     addressComponents.forEach(component => {
       const type = component?.Eg?.[0];
       const value = component?.Fg;
+      const abbrv = component?.Gg;
       switch (type) {
         case 'street_number':
           address = value;
@@ -408,7 +411,7 @@
           city = value;
           break;
         case 'administrative_area_level_1':
-          state = value;
+          state = abbrv;
           break;
         case 'postal_code':
           postalCode = value;
