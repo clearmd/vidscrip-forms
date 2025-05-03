@@ -184,6 +184,11 @@
         <!-- Additional Address Fields -->
         <div class="mb-3">
           <label for="city" class="form-label">City:</label>
+          <input type="text" id="address2" name="address2" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+          <label for="city" class="form-label">City:</label>
           <input type="text" id="city" name="city" class="form-control" readonly />
         </div>
         
@@ -199,7 +204,7 @@
         
         <div class="mb-3">
           <label for="country" class="form-label">Country:</label>
-          <input type="text" id="country" name="country" class="form-control" readonly />
+          <input type="hidden" id="country" name="country" class="form-control" readonly />
         </div>        
       
         <div class="mb-3">
@@ -374,6 +379,7 @@
         console.log(`suggestion.placePrediction`, suggestion.placePrediction)
         populateAddressFields(suggestion.placePrediction.placeId);
         suggestionsContainer.innerHTML = '';
+        suggestionsContainer.style.display = 'none';
       });
       suggestionsContainer.appendChild(div);
     });
@@ -388,8 +394,6 @@
     let state = '';
     let postalCode = '';
     let country = '';
-
-    console.log(`addressComponents`, addressComponents)
 
     addressComponents.forEach(component => {
       const type = component?.Eg?.[0];
@@ -415,8 +419,6 @@
       }
     });
 
-    console.log9
-
     document.getElementById('address').value = address;
     document.getElementById('city').value = city;
     document.getElementById('state').value = state;
@@ -437,13 +439,7 @@
     const r = await place.fetchFields({
       fields: ["addressComponents", "formattedAddress", "displayName"],
     });
-
-    console.log(`r`, r);
-    console.log(`place`, place)
-    console.log('place.addressComponents', place.addressComponents)
-    console.log('place.formattedAddress', place.formattedAddress)
-    console.log('place.displayName', place.displayName)
-
+    
     return { addressComponents, formattedAddress} = place;
   }
 
