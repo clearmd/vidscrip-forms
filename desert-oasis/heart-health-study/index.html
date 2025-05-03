@@ -114,6 +114,7 @@
 
     /* Loading spinner styles */
     .spinner-border {
+      color: '#ff5f2c';
       width: 3rem;
       height: 3rem;
     }
@@ -244,17 +245,16 @@
   </div>
    <!-- Success Page (Initially hidden) -->
    <div id="successState" class="success-container" style="display: none;">
-    <img src="../assets/logo.svg" alt="Desert Oasis Healthcare Logo" class="logo">
+    <img src="../assets/logo.svg" alt="Desert Oasis Healthcare Logo" class="logo logo-border">
     <h2 class="mb-4">Thank you for completing the Desert Oasis Heart Health Monitoring signup form with your information.</h2>
     <p>If you requested that someone from DOHC contact you regarding your questions before sending the Zio monitor, they will be in touch soon.</p>
     <p>If you indicated that you're ready to get started, iRhythm will send you a text message once the Zio monitor is shipped to the address you provided, and will follow up with a phone call when it is delivered to you. You can expect delivery of the Zio monitor in about one week.</p>
   </div>
         
   <!-- Loading State (Initially hidden) -->
-  <div id="loadingState" class="text-center" style="display: none;">
-    <div class="spinner-border text-primary" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
+  <div id="loadingState" class="success-container text-center" style="display: none;">
+    <img src="../assets/logo.svg" alt="Desert Oasis Healthcare Logo" class="logo logo-border">
+    <div class="spinner-border" role="status" style="margin: auto"></div>
     <p>Please wait while we submit your information...</p>
   </div>
 
