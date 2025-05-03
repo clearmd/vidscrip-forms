@@ -426,9 +426,12 @@
     });
 
     // Call fetchFields, passing the needed data fields.
-    await place.fetchFields({
-      fields: ["addressComponents"],
+    const r = await place.fetchFields({
+      fields: ["addressComponents", "formattedAddress", "displayName"],
     });
+
+    console.log(`r`, r);
+    console.log(`place`, place)
 
     return place;
   }
