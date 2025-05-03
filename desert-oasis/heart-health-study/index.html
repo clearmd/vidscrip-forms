@@ -338,6 +338,8 @@
       types: ['address'],
     };
 
+    console.log(`inputElement`, inputElement);
+
     placeAutocomplete = new google.maps.places.PlaceAutocompleteElement(inputElement, options);
 
     placeAutocomplete.addEventListener('place_changed', () => {
