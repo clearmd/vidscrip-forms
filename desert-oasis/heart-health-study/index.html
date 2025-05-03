@@ -205,10 +205,7 @@
           </div>
         </div>
         
-        <div class="mb-3">
-          <label for="country" class="form-label">Country:</label>
-          <input type="hidden" id="country" name="country" class="form-control" readonly />
-        </div>        
+        <input type="hidden" id="country" name="country" class="form-control" readonly />
       
         <div class="mb-3">
           <label for="dob" class="form-label">Date of Birth:</label>
@@ -236,31 +233,21 @@
       
         <button type="submit" class="btn btn-custom text-white submit-btn" id="submitBtn" disabled>Submit</button>
       </form>
-      
-      <!-- Loading State (Initially hidden) -->
-      <div id="loadingState" class="text-center" style="display: none;">
-        <div class="spinner-border text-primary" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-        <p>Please wait while we submit your information...</p>
-      </div>
-      
-      <!-- Success Page (Initially hidden) -->
-      <div id="successState" class="success-container" style="display: none;">
-        <img src="../assets/logo.svg" alt="Desert Oasis Healthcare Logo" class="logo">
-        <h2>Thank you for completing the Desert Oasis Heart Health Monitoring signup form with your information.</h2>
-        <p>If you requested that someone from DOHC contact you regarding your questions before sending the Zio monitor, they will be in touch soon.</p>
-        <p>If you indicated that you're ready to get started, iRhythm will send you a text message once the Zio monitor is shipped to the address you provided, and will follow up with a phone call when it is delivered to you. You can expect delivery of the Zio monitor in about one week.</p>
-      </div>
-            
-      <!-- Loading State (Initially hidden) -->
-      <div id="loadingState" class="text-center" style="display: none;">
-        <div class="spinner-border text-primary" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-        <p>Please wait while we submit your information...</p>
-      </div>
+  </div>
+   <!-- Success Page (Initially hidden) -->
+   <div id="successState" class="success-container" style="display: none;">
+    <img src="../assets/logo.svg" alt="Desert Oasis Healthcare Logo" class="logo">
+    <h2>Thank you for completing the Desert Oasis Heart Health Monitoring signup form with your information.</h2>
+    <p>If you requested that someone from DOHC contact you regarding your questions before sending the Zio monitor, they will be in touch soon.</p>
+    <p>If you indicated that you're ready to get started, iRhythm will send you a text message once the Zio monitor is shipped to the address you provided, and will follow up with a phone call when it is delivered to you. You can expect delivery of the Zio monitor in about one week.</p>
+  </div>
+        
+  <!-- Loading State (Initially hidden) -->
+  <div id="loadingState" class="text-center" style="display: none;">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
     </div>
+    <p>Please wait while we submit your information...</p>
   </div>
 
   <!-- Bootstrap JS and Popper.js (optional for some components) -->
