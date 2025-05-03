@@ -381,8 +381,15 @@
 
 
   async function populateAddressFields(placeId) {
-    const placeDetails = await fetchPlaceDetails(placeId);
-    
+    try {
+      const placeDetails = await fetchPlaceDetails(placeId);
+      console.log(`placeDetails`, placeDetails)
+    }
+    catch(err){
+      console.log(`populateAddressFields()`, `placeDetails failed`, placeDetails);
+      return;
+    }
+
     const addressComponents = placeDetails.address_components;
 
     let city = '';
