@@ -381,42 +381,46 @@
 
   async function populateAddressFields(placeId) {
 
-    let addressComponents = await getPlaceDetails(placeId);
+    let addressComponents = await getAddressDetailsForPlace(placeId);
 
-    // const addressComponents = placeDetails.address_components;
-
-    console.log(`addressComponents`, addressComponents);
-
+    let address = ''
     let city = '';
     let state = '';
     let postalCode = '';
     let country = '';
 
     addressComponents.forEach(component => {
-      const componentType = component.types[0];
-      switch (componentType) {
+      const type = component?.Eg?.[0];
+      const value = component?.Fg;
+      switch (type) {
+        case 'street_number':
+          address = value;
+          breakl
+        case 'route':
+          address += ` ${value}`;
         case 'locality':
-          city = component.long_name;
+          city = ;
           break;
         case 'administrative_area_level_1':
-          state = component.long_name;
+          state = value;
           break;
         case 'postal_code':
-          postalCode = component.long_name;
+          postalCode = value;
           break;
         case 'country':
-          country = component.long_name;
+          country = value;
           break;
       }
     });
 
+    document.getElementById('address') = address;
     document.getElementById('city').value = city;
     document.getElementById('state').value = state;
     document.getElementById('postal_code').value = postalCode;
     document.getElementById('country').value = country;
   }
 
-  async function getPlaceDetails(placeId) {
+  async function getAddressDetailsForPlace(placeId) {
     // Use place ID to create a new Place instance.
     console.log(`google.maps`, google.maps);
     const { Place } = await google.maps.importLibrary("places");
@@ -436,7 +440,7 @@
     console.log('place.formattedAddress', place.formattedAddress)
     console.log('place.displayName', place.displayName)
 
-    return place.addressComponents;
+    return { addressComponents, formattedAddress} = place;
   }
 
   (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
