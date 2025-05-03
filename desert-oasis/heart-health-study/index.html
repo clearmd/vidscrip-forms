@@ -336,13 +336,10 @@
   // Initialize the Google Places Autocomplete
   async function initAutocomplete() {
     const input = document.getElementById('address');
-
+    const suggestionsContainer = document.getElementById('suggestions');
     input.addEventListener('blur', () => {
       setTimeout(() => { suggestionsContainer.style.display = 'none'; }, 100);
     });
-
-    const suggestionsContainer = document.getElementById('suggestions');
-
 
     input.addEventListener('input', async () => {
       const query = input.value.trim();
@@ -391,7 +388,6 @@
       div.addEventListener('click', () => {
         suggestionsContainer.style.display = 'hidden';
         input.value = suggestion.placePrediction.text.text;
-        console.log(`suggestion.placePrediction`, suggestion.placePrediction)
         populateAddressFields(suggestion.placePrediction.placeId);
         suggestionsContainer.innerHTML = '';
         suggestionsContainer.style.display = 'none';
@@ -444,7 +440,6 @@
 
   async function getAddressDetailsForPlace(placeId) {
     // Use place ID to create a new Place instance.
-    console.log(`google.maps`, google.maps);
     const { Place } = await google.maps.importLibrary("places");
     const place = new Place({
       id: placeId,
