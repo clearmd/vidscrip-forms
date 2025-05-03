@@ -449,20 +449,21 @@
   }
 
   async function getPlaceDetails(placeId) {
-  // Use place ID to create a new Place instance.
-  const place = new google.maps.places.Place({
-    id: placeId,
-    requestedLanguage: "en", // optional
-  });
+    // Use place ID to create a new Place instance.
+    const place = new google.maps.places.Place({
+      id: placeId,
+      requestedLanguage: "en", // optional
+    });
 
-  // Call fetchFields, passing the needed data fields.
-  await place.fetchFields({
-    fields: ["displayName", "formattedAddress", "location"],
-  });
+    // Call fetchFields, passing the needed data fields.
+    await place.fetchFields({
+      fields: ["displayName", "formattedAddress", "location"],
+    });
 
-  // Log the result.
-  console.log(place.displayName);
-  console.log(place.formattedAddress);
+    // Log the result.
+    console.log(place.displayName);
+    console.log(place.formattedAddress);
+  }
 
   // Initialize the autocomplete functionality
   initAutocomplete();
