@@ -381,13 +381,15 @@
 
   async function populateAddressFields(placeId) {
 
-    let addressComponents = await getAddressDetailsForPlace(placeId);
+    const { addressComponents } = await getAddressDetailsForPlace(placeId);
 
     let address = ''
     let city = '';
     let state = '';
     let postalCode = '';
     let country = '';
+
+    console.log(`addressComponents`, addressComponents)
 
     addressComponents.forEach(component => {
       const type = component?.Eg?.[0];
