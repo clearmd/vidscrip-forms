@@ -450,7 +450,9 @@
 
   async function getPlaceDetails(placeId) {
     // Use place ID to create a new Place instance.
-    const place = new google.maps.places.Place({
+    console.log(`google.maps`, google.maps);
+    const { Place } = await google.maps.importLibrary("place");
+    const place = new Place({
       id: placeId,
       requestedLanguage: "en", // optional
     });
