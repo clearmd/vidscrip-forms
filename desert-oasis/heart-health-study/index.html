@@ -180,6 +180,12 @@
           <input type="text" id="address" name="address" class="form-control" required />
           <div id="suggestions" class="autocomplete-suggestions"></div>
         </div>
+
+        <!-- Address Fields -->
+        <div id="addressFields" class="address-fields" style="display: none;">
+          <div id="selectedAddress"></div>
+          <button id="resetBtn">Change Address</button>
+        </div>
         
         <!-- Additional Address Fields -->
         <div class="mb-3">
@@ -320,24 +326,43 @@
 
   // Initialize the Google Places Autocomplete
   async function initAutocomplete() {
-    const input = document.getElementById('address');
-    const suggestionsContainer = document.getElementById('suggestions');
+    let placeAutocomplete;
+    let inputElement = document.getElementById('address');
+    let suggestionsContainer = document.getElementById('suggestions');
+    let addressFields = document.getElementById('addressFields');
+    let selectedAddressDiv = document.getElementById('selectedAddress');
+    let resetBtn = document.getElementById('resetBtn');
 
 
-    input.addEventListener('input', async () => {
-      const query = input.value.trim();
-      if (query.length > 2) {
-        try {
-          const predictions = await fetchAutocompleteSuggestions(query);
-          displaySuggestions(predictions, suggestionsContainer, input);
-        } catch (error) {
-          console.error('Error fetching autocomplete suggestions:', error);
+    async function initAutocomplete() {
+      const options = {
+        componentRestrictions: { country: 'us' },
+        fields: ['address_components', 'formatted_address'],
+        types: ['address'],
+      };
+
+      placeAutocomplete = new google.maps.places.PlaceAutocompleteElement(inputElement, options);
+
+      placeAutocomplete.addEventListener('gmp-placeselect', () => {
+        const place = placeAutocomplete.getPlace();
+        displaySelectedAddress(place);
+        addressFields.style.display = 'block';
+      });
+
+      inputElement.addEventListener('input', async () => {
+        const query = inputElement.value.trim();
+        if (query.length > 2) {
+          try {
+            const predictions = await fetchAutocompleteSuggestions(query);
+            displaySuggestions(predictions);
+          } catch (error) {
+            console.error('Error fetching autocomplete suggestions:', error);
+          }
+        } else {
+          suggestionsContainer.innerHTML = '';
         }
-      } else {
-        suggestionsContainer.innerHTML = '';
-      }
-    });
-  }
+      });
+    }
 
   async function fetchAutocompleteSuggestions(query) {
     const response = await fetch('https://places.googleapis.com/v1/places:autocomplete', {
@@ -361,60 +386,54 @@
     return data.suggestions || [];
   }
 
-  function displaySuggestions(suggestions, suggestionsContainer, input) {
-    suggestionsContainer.innerHTML = '';
-    suggestionsContainer.style.display = 'block';
-    suggestions.forEach(suggestion => {
-      const div = document.createElement('div');
-      div.textContent = suggestion.placePrediction.text.text;
-      div.classList.add('suggestion-item');
-      div.addEventListener('click', () => {
-        suggestionsContainer.style.display = 'hidden';
-        input.value = suggestion.placePrediction.text.text;
-        console.log(`suggestion.placePrediction`, suggestion.placePrediction)
-        populateAddressFields(suggestion.placePrediction.placeId);
-        suggestionsContainer.innerHTML = '';
+  function displaySuggestions(suggestions) {
+      suggestionsContainer.innerHTML = '';
+      suggestions.forEach(suggestion => {
+        const div = document.createElement('div');
+        div.textContent = suggestion.placePrediction.text.text;
+        div.classList.add('suggestion-item');
+        div.addEventListener('click', () => {
+          inputElement.value = suggestion.placePrediction.text.text;
+          placeAutocomplete.setQuery(inputElement.value);
+          suggestionsContainer.innerHTML = '';
+        });
+        suggestionsContainer.appendChild(div);
       });
-      suggestionsContainer.appendChild(div);
+    }
+
+    function displaySelectedAddress(place) {
+      const addressComponents = place.address_components;
+      let address = '';
+
+      addressComponents.forEach(component => {
+        const componentType = component.types[0];
+        switch (componentType) {
+          case 'street_address':
+          case 'route':
+            address += component.long_name + ', ';
+            break;
+          case 'locality':
+            address += component.long_name + ', ';
+            break;
+          case 'administrative_area_level_1':
+            address += component.long_name + ', ';
+            break;
+          case 'country':
+            address += component.long_name;
+            break;
+          default:
+            break;
+        }
+      });
+
+      selectedAddressDiv.textContent = `Selected Address: ${address}`;
+    }
+
+    resetBtn.addEventListener('click', () => {
+      inputElement.value = '';
+      suggestionsContainer.innerHTML = '';
+      addressFields.style.display = 'none';
     });
-  }
-
-
-  async function populateAddressFields(placeId) {
-    const placeDetails = await fetchPlaceDetails(placeId);
-    
-    const addressComponents = placeDetails.address_components;
-
-    let city = '';
-    let state = '';
-    let postalCode = '';
-    let country = '';
-
-    addressComponents.forEach(component => {
-      const componentType = component.types[0];
-      switch (componentType) {
-        case 'locality':
-          city = component.long_name;
-          break;
-        case 'administrative_area_level_1':
-          state = component.long_name;
-          break;
-        case 'postal_code':
-          postalCode = component.long_name;
-          break;
-        case 'country':
-          country = component.long_name;
-          break;
-      }
-    });
-
-    document.getElementById('city').value = city;
-    document.getElementById('state').value = state;
-    document.getElementById('postal_code').value = postalCode;
-    document.getElementById('country').value = country;
-  }
-
-  async function fetchPlaceDetails(placeId) {
     try {
       const response = await fetch(`https://places.googleapis.com/v1/places/${placeId}`, {
         method: 'GET',
