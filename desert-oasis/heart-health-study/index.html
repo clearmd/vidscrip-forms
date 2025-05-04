@@ -580,10 +580,10 @@
      dobField.addEventListener('focus', () => {
         const today = new Date();
         const eighteenYearsAgo = new Date(today.setFullYear(today.getFullYear() - 18));
-        const sixtyFiveYearsAgo = new Date(today.setFullYear(today.getFullYear() - 65));
-        console.log(`dobField.value`,dobField.value)
-        dobField.value = sixtyFiveYearsAgo.toISOString().split('T')[0]; // Set default date to 65 years ago
-        // dobField.min = eighteenYearsAgo.toISOString().split('T')[0]; // Set minimum date to 18 years ago
+        const sixtyFiveYearsAgo = new Date(today.setFullYear(today.getFullYear() - 65));        
+        if(!dobField.value || dobField.value === '') {
+          dobField.value = sixtyFiveYearsAgo.toISOString().split('T')[0]; // Set default date to 65 years ago
+        }
     })
   }
 
