@@ -222,7 +222,7 @@
             <label for="address" class="form-label form-value-required">Address</label>
             <input type="text" id="address" name="address" class="form-control" required tabindex="2" autocomplete="address-line1" />
           </div>
-          <div class="me-3 w-25">
+          <div class="w-25">
             <label for="address2" class="form-label">Address 2</label>
             <input type="text" id="address2" name="address2" class="form-control" tabindex="3" autocomplete="address-line2" />
           </div>
@@ -230,12 +230,12 @@
         </div>
         
         <div class="mb-3 d-flex">
-          <div class="me-3 w-100">
+          <div class="me-3 w-75">
             <label for="city" class="form-label form-value-required">City</label>
             <input type="text" id="city" name="city" class="form-control" required tabindex="4" autocomplete="city" />
           </div>
         
-          <div class="me-3">
+          <div class="me-3 w-75">
             <label for="state" class="form-label form-value-required">State</label>
             <select id="state" name="state" class="form-control" required tabindex="5" autocomplete="state">
               <option value=""></option> <!-- Placeholder option -->
@@ -366,7 +366,7 @@
     const input = document.getElementById('address');
     const suggestionsContainer = document.getElementById('suggestions');
 
-    setDobDefaultTo18YearsAgo();
+    // setDobDefaultTo18YearsAgo();
     setStateAbbreviations();
     
 
@@ -504,13 +504,11 @@
     const dobField = document.getElementById('dob');
     
      // Listen for the focus event to set the min date when the user taps on the DOB field
-     dobField.addEventListener('focus', function() {
-      const today = new Date();
-      const eighteenYearsAgo = new Date(today.setFullYear(today.getFullYear() - 18));
-      const sixtyFiveYearsAgo = new Date(today.setFullYear(today.getFullYear() - 65));
-      dobField.value = sixtyFiveYearsAgo.toISOString().split('T')[0]; // Set default date to 65 years ago
-      dobField.min = eighteenYearsAgo.toISOString().split('T')[0]; // Set minimum date to 18 years ago
-    });
+    const today = new Date();
+    const eighteenYearsAgo = new Date(today.setFullYear(today.getFullYear() - 18));
+    const sixtyFiveYearsAgo = new Date(today.setFullYear(today.getFullYear() - 65));
+    // dobField.value = sixtyFiveYearsAgo.toISOString().split('T')[0]; // Set default date to 65 years ago
+    dobField.max = eighteenYearsAgo.toISOString().split('T')[0]; // Set minimum date to 18 years ago
   }
 
   function setStateAbbreviations() {
