@@ -496,7 +496,8 @@
      dobField.addEventListener('focus', function() {
       const today = new Date();
       const eighteenYearsAgo = new Date(today.setFullYear(today.getFullYear() - 18));
-      dobField.min = eighteenYearsAgo.toISOString().split('T')[0]; // Set minimum date to 18 years ago
+      dobField.value = eighteenYearsAgo;
+      // dobField.min = eighteenYearsAgo.toISOString().split('T')[0]; // Set minimum date to 18 years ago
     });
   }
 
