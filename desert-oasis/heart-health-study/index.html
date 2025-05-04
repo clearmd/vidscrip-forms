@@ -214,17 +214,17 @@
 
         <div class="mb-3">
           <label for="dob" class="form-label form-value-required">Date of Birth</label>
-          <input type="date" id="dob" name="dob" class="form-control" required tabindex="7"  />
+          <input type="date" id="dob" name="dob" class="form-control" required tabindex="2"  />
         </div>
       
         <div class="mb-3 d-flex address-container">
           <div class="me-3 w-75">
             <label for="address" class="form-label form-value-required">Address</label>
-            <input type="text" id="address" name="address" class="form-control" required tabindex="2" autocomplete="address-line1" />
+            <input type="text" id="address" name="address" class="form-control" required tabindex="3" autocomplete="address-line1" />
           </div>
           <div class="w-25">
             <label for="address2" class="form-label">Address 2</label>
-            <input type="text" id="address2" name="address2" class="form-control" tabindex="3" autocomplete="address-line2" />
+            <input type="text" id="address2" name="address2" class="form-control" tabindex="4" autocomplete="address-line2" />
           </div>
           <div id="suggestions" class="autocomplete-suggestions"></div>
         </div>
@@ -232,12 +232,12 @@
         <div class="mb-3 d-flex">
           <div class="me-3 w-75">
             <label for="city" class="form-label form-value-required">City</label>
-            <input type="text" id="city" name="city" class="form-control" required tabindex="4" autocomplete="city" />
+            <input type="text" id="city" name="city" class="form-control" required tabindex="5" autocomplete="city" />
           </div>
         
           <div class="w-25">
             <label for="state" class="form-label form-value-required">State</label>
-            <select id="state" name="state" class="form-control" required tabindex="5" autocomplete="state">
+            <select id="state" name="state" class="form-control" required tabindex="6" autocomplete="state">
               <option value=""></option> <!-- Placeholder option -->
             </select>
           </div>
@@ -245,7 +245,7 @@
         
         <div class="mb-3">
           <label for="postal_code" class="form-label form-value-required">Postal Code</label>
-          <input type="text" id="postal_code" name="postal_code" class="form-control" required tabindex="6" autocomplete="postal-code" />
+          <input type="text" id="postal_code" name="postal_code" class="form-control" required tabindex="7" autocomplete="postal-code" />
         </div>
         
         <input type="hidden" id="country" name="country" class="form-control" readonly/>
@@ -260,12 +260,12 @@
       
           <div class="my-3 mb-6">
             <div class="form-check">
-              <input type="radio" id="start" name="consent" value="I'm ready to get started" class="form-check-input" required>
+              <input type="radio" id="start" name="consent" value="I'm ready to get started" class="form-check-input">
               <label for="start" class="form-check-label">I'm ready to get started.</label>
             </div>
         
             <div class="form-check">
-              <input type="radio" id="wait" name="consent" value="Wait - please have someone from DOHC contact me" class="form-check-input" required>
+              <input type="radio" id="wait" name="consent" value="Wait - please have someone from DOHC contact me" class="form-check-input">
               <label for="wait" class="form-check-label">Wait - please have someone from DOHC contact me to answer my questions before sending the Zio monitor.</label>
             </div>
           </div>
@@ -422,7 +422,7 @@
         populateAddressFields(suggestion.placePrediction.placeId);
         suggestionsContainer.innerHTML = '';
         suggestionsContainer.style.display = 'none';
-        // autoSelectRadioButton();  // Automatically select the first radio button
+        autoSelectRadioButton();  // Automatically select the first radio button
         showPulseEffect();        // Add pulsing effect to the first radio button
       });
       suggestionsContainer.appendChild(div);
