@@ -284,7 +284,7 @@
       
           <div class="my-3 mb-6">
             <div class="form-check">
-              <input type="radio" id="start" name="consent" value="I'm ready to get started" class="form-check-input">
+              <input type="radio" id="start" name="consent" value="I'm ready to get started" class="form-check-input" checked>
               <label for="start" class="form-check-label">I'm ready to get started.</label>
             </div>
         
@@ -317,7 +317,7 @@
   <!-- Footer Section -->
   <div class="footer">
     <a href="https://studio.vidscrip.com/?utm_source=vidscrip-form-dohc"><img src="../assets/icon.png" alt="Vidscrip Icon" class="footer-icon"></a>
-    <p class="footer-text">
+    <p class="footer-text" style="font-weight: 500">
       Powered by <span class="vidscrip-text">Vidscrip</span>Forms
     </p>
     <p class="footer-text vidscrip-tagline">HIPAA-compliant forms for your practice.</p>
@@ -405,8 +405,8 @@
     const input = document.getElementById('address');
     const suggestionsContainer = document.getElementById('suggestions');
 
-    // setDobDefaultTo18YearsAgo();
-    setStateAbbreviations();
+    setDobDefaultTo18YearsAgo();
+    // setStateAbbreviations();
     
 
     input.addEventListener('input', async () => {
@@ -543,11 +543,13 @@
     const dobField = document.getElementById('dob');
     
      // Listen for the focus event to set the min date when the user taps on the DOB field
-    const today = new Date();
-    const eighteenYearsAgo = new Date(today.setFullYear(today.getFullYear() - 18));
-    const sixtyFiveYearsAgo = new Date(today.setFullYear(today.getFullYear() - 65));
-    // dobField.value = sixtyFiveYearsAgo.toISOString().split('T')[0]; // Set default date to 65 years ago
-    dobField.max = eighteenYearsAgo.toISOString().split('T')[0]; // Set minimum date to 18 years ago
+     dobField.addEventListener('focus', () => {
+        const today = new Date();
+        const eighteenYearsAgo = new Date(today.setFullYear(today.getFullYear() - 18));
+        const sixtyFiveYearsAgo = new Date(today.setFullYear(today.getFullYear() - 65));
+        dobField.value = sixtyFiveYearsAgo.toISOString().split('T')[0]; // Set default date to 65 years ago
+        dobField.min = eighteenYearsAgo.toISOString().split('T')[0]; // Set minimum date to 18 years ago
+    })
   }
 
   function setStateAbbreviations() {
