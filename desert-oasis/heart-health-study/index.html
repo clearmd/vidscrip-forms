@@ -339,13 +339,27 @@
   </script>  
 
 <script>
+  // List of US states and territories
+  const statesAndTerritories = [
+    "Alabama", "Alaska", "American Samoa", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", 
+    "Delaware", "District of Columbia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho", "Illinois", 
+    "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Marshall Islands", "Maryland", 
+    "Massachusetts", "Michigan", "Micronesia", "Minnesota", "Mississippi", "Missouri", "Montana", 
+    "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", 
+    "North Dakota", "Northern Mariana Islands", "Ohio", "Oklahoma", "Oregon", "Palau", "Pennsylvania", 
+    "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", 
+    "Vermont", "Virgin Islands", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
+  ];
   const apiKey = 'AIzaSyDUJf5RwRQeWlPhraU89seR4kHfUmaiJL0';
 
   // Initialize the Google Places Autocomplete
   async function initAutocomplete() {
     const input = document.getElementById('address');
     const suggestionsContainer = document.getElementById('suggestions');
+
     setDobDefaultTo18YearsAgo();
+    setStateAbbreviations();
+    
 
     input.addEventListener('input', async () => {
       const query = input.value.trim();
@@ -478,10 +492,23 @@
   function setDobDefaultTo18YearsAgo() {
     const dobField = document.getElementById('dob');
     
-    // Set default value to 18 years ago
-    const today = new Date();
-    const eighteenYearsAgo = new Date(today.setFullYear(today.getFullYear() - 18));
-    dobField.value = eighteenYearsAgo.toISOString().split('T')[0];
+     // Listen for the focus event to set the min date when the user taps on the DOB field
+     dobField.addEventListener('focus', function() {
+      const today = new Date();
+      const eighteenYearsAgo = new Date(today.setFullYear(today.getFullYear() - 18));
+      dobField.min = eighteenYearsAgo.toISOString().split('T')[0]; // Set minimum date to 18 years ago
+    });
+  }
+
+  function setStateAbbreviations() {
+    const stateSelect = document.getElementById('state');
+    
+    statesAndTerritories.forEach(function(state) {
+      const option = document.createElement('option');
+      option.value = state;
+      option.textContent = state;
+      stateSelect.appendChild(option);
+    });
   }
 
   // Init Google Maps
