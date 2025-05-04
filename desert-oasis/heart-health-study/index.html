@@ -361,7 +361,7 @@
     form.addEventListener("input", function () {
       submitBtn.disabled = !form.checkValidity(); // Disable button if form is not valid
       console.log(`!form.checkValidity()`,!form.checkValidity())
-      consle.log(`submitBtn.disabled`, submitBtn.disabled)
+      console.log(`submitBtn.disabled`, submitBtn.disabled)
     });
   
     // Set the max date for Date of Birth input field to 18 years ago
@@ -581,8 +581,9 @@
         const today = new Date();
         const eighteenYearsAgo = new Date(today.setFullYear(today.getFullYear() - 18));
         const sixtyFiveYearsAgo = new Date(today.setFullYear(today.getFullYear() - 65));
+        console.log(`dobField.value`,dobField.value)
         dobField.value = sixtyFiveYearsAgo.toISOString().split('T')[0]; // Set default date to 65 years ago
-        dobField.min = eighteenYearsAgo.toISOString().split('T')[0]; // Set minimum date to 18 years ago
+        // dobField.min = eighteenYearsAgo.toISOString().split('T')[0]; // Set minimum date to 18 years ago
     })
   }
 
