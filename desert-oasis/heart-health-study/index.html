@@ -564,7 +564,7 @@
         const today = new Date();
         const eighteenYearsAgo = new Date(today.setFullYear(today.getFullYear() - 18));
         const sixtyFiveYearsAgo = new Date(today.setFullYear(today.getFullYear() - 65));
-        dobField.value = dobField.value ?? sixtyFiveYearsAgo.toISOString().split('T')[0]; // Set default date to 65 years ago
+        dobField.value = dobField.value.length > 0 ? dobField.value : sixtyFiveYearsAgo.toISOString().split('T')[0]; // Set default date to 65 years ago
         dobField.min = eighteenYearsAgo.toISOString().split('T')[0]; // Set minimum date to 18 years ago
     })
   }
