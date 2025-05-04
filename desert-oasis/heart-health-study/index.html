@@ -207,9 +207,15 @@
         <!-- Hidden field for Response Id -->
         <input type="hidden" id="responseId" name="responseId" value="">
       
-        <div class="mb-3">
-          <label for="name" class="form-label">Name:</label>
-          <input type="text" id="name" name="name" class="form-control" required tabindex="1" autocomplete="name">
+        <div class="mb-3 d-flex">
+          <div class="me-3 w-100">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" id="name" name="name" class="form-control" required tabindex="1" autocomplete="name">
+          </div>
+          <div class="me-3">
+            <label for="dob" class="form-label">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" class="form-control" required tabindex="7"  />
+          </div>
         </div>
       
         <div class="mb-3 address-container">
@@ -244,11 +250,6 @@
         </div>
         
         <input type="hidden" id="country" name="country" class="form-control" readonly required/>
-      
-        <div class="mb-3">
-          <label for="dob" class="form-label">Date of Birth:</label>
-          <input type="date" id="dob" name="dob" class="form-control" required tabindex="7"  />
-        </div>
       
         <div class="mt-3 consent-text text-left">
 
