@@ -25,8 +25,8 @@
 
     /* Style for the submit button when it's disabled */
     .btn-custom:disabled {
-      background-color: rgb(117 183 241/var(--tw-bg-opacity)); /* Lighter blue to indicate disabled state */
-      border-color: rgb(117 183 241/var(--tw-bg-opacity));
+      background-color: rgb(117 183 241); /* Lighter blue to indicate disabled state */
+      border-color: rgb(117 183 241);
       cursor: not-allowed; /* Ensure the cursor stays as "not-allowed" */
       opacity: 0.9; /* Slightly reduce opacity for the disabled state */
     }
@@ -218,17 +218,17 @@
         </div>
       
         <div class="mb-3 address-container">
-          <label for="address" class="form-label form-value-required">Address</label>
-          <input type="text" id="address" name="address" class="form-control" required tabindex="2" autocomplete="address-line1" />
+          <div class="me-3 w-75">
+            <label for="address" class="form-label form-value-required">Address</label>
+            <input type="text" id="address" name="address" class="form-control" required tabindex="2" autocomplete="address-line1" />
+          </div>
+          <div class="me-3 w-25">
+            <label for="address2" class="form-label">Address 2</label>
+            <input type="text" id="address2" name="address2" class="form-control" tabindex="3" autocomplete="address-line2" />
+          </div>
           <div id="suggestions" class="autocomplete-suggestions"></div>
         </div>
         
-        <!-- Additional Address Fields -->
-        <div class="mb-3">
-          <label for="address2" class="form-label">Address 2</label>
-          <input type="text" id="address2" name="address2" class="form-control" tabindex="3" autocomplete="address-line2" />
-        </div>
-
         <div class="mb-3 d-flex">
           <div class="me-3 w-100">
             <label for="city" class="form-label form-value-required">City</label>
