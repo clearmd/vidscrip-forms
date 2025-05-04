@@ -360,6 +360,8 @@
     // Enable or disable submit button based on form validity
     form.addEventListener("input", function () {
       submitBtn.disabled = !form.checkValidity(); // Disable button if form is not valid
+      console.log(`!form.checkValidity()`,!form.checkValidity())
+      consle.log(`submitBtn.disabled`, submitBtn.disabled)
     });
   
     // Set the max date for Date of Birth input field to 18 years ago
