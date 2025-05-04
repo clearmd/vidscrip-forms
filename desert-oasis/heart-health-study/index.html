@@ -202,7 +202,7 @@
 
     .footer-icon {
       width: 40px;
-      margin-bottom: 10px;
+      margin-bottom: 0px;
     }
 
     .footer-text {
@@ -317,11 +317,13 @@
   <!-- Footer Section -->
   <div class="footer">
     <a href="https://studio.vidscrip.com/?utm_source=vidscrip-form-dohc"><img src="../assets/icon.png" alt="Vidscrip Icon" class="footer-icon"></a>
-    <p class="footer-text" style="font-weight: 500">
-      Powered by <span class="vidscrip-text">Vidscrip</span>Forms
-    </p>
-    <p class="footer-text vidscrip-tagline">HIPAA-compliant forms for your practice.</p>
-    <p class="footer-text">©<span id="currentYear"></span> Clear.md Inc.</p>
+    <div class="mb-3">
+      <p class="footer-text">
+        Powered by <span class="fw-bolder"><span class="vidscrip-text">Vidscrip</span>Forms</span>
+      </p>
+      <p class="footer-text vidscrip-tagline">HIPAA-compliant forms for your practice.</p>
+    </div>
+    <p class="footer-text fw-lighter">©<span id="currentYear"></span> Clear.md Inc.</p>
   </div>
 
   <script>
@@ -392,12 +394,14 @@
 <script>
   // List of US states and territories
   const statesAndTerritories = [
-  "AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "GU", "HI", 
-  "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MH", "MD", "MA", "MI", "FM", "MN", 
-  "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "MP", "OH", "OK", 
-  "OR", "PW", "PA", "PR", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", 
-  "WV", "WI", "WY"
-];
+    "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", 
+    "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", 
+    "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", 
+    "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", 
+    "WV", "WI", "WY", // 50 states
+    "AS", "FM", "GU", "MH", "MP", "PW", "PR", "VI" // US territories
+  ];
+
   const apiKey = 'AIzaSyDUJf5RwRQeWlPhraU89seR4kHfUmaiJL0';
 
   // Initialize the Google Places Autocomplete
@@ -406,9 +410,8 @@
     const suggestionsContainer = document.getElementById('suggestions');
 
     setDobDefaultTo18YearsAgo();
-    // setStateAbbreviations();
+    setStateAbbreviations();
     
-
     input.addEventListener('input', async () => {
       const query = input.value.trim();
       if (query.length > 2) {
