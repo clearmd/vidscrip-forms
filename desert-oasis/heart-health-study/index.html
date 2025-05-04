@@ -407,11 +407,11 @@
   function initForm() { 
     form.addEventListener("input", function () {
       // Manually check if at least one radio button is selected
-      const radioButtons = document.querySelectorAll('input[name="consent"]:checked');
-      const isRadioSelected = radioButtons.length > 0;
+      // const radioButtons = document.querySelectorAll('input[name="consent"]:checked');
+      // const isRadioSelected = radioButtons.length > 0;
 
       // Enable submit button only if form is valid AND at least one radio button is checked
-      submitBtn.disabled = !form.checkValidity() || !isRadioSelected;
+      // submitBtn.disabled = !form.checkValidity() || !isRadioSelected;
 
       initDob();
       setStateAbbreviations();
@@ -564,7 +564,7 @@
         const today = new Date();
         const eighteenYearsAgo = new Date(today.setFullYear(today.getFullYear() - 18));
         const sixtyFiveYearsAgo = new Date(today.setFullYear(today.getFullYear() - 65));
-        dobField.value = dobField.value.length > 0 ? dobField.value : sixtyFiveYearsAgo.toISOString().split('T')[0]; // Set default date to 65 years ago
+        dobField.value = sixtyFiveYearsAgo.toISOString().split('T')[0]; // Set default date to 65 years ago
         dobField.min = eighteenYearsAgo.toISOString().split('T')[0]; // Set minimum date to 18 years ago
     })
   }
@@ -582,7 +582,7 @@
 
   // Add these functions after address selection
   function onAddressSelect() {
-    autoSelectRadioButton();
+    // autoSelectRadioButton();
     showPulseEffect();
   }
 
