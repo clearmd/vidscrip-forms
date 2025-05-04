@@ -422,7 +422,7 @@
         populateAddressFields(suggestion.placePrediction.placeId);
         suggestionsContainer.innerHTML = '';
         suggestionsContainer.style.display = 'none';
-        autoSelectRadioButton();  // Automatically select the first radio button
+        // autoSelectRadioButton();  // Automatically select the first radio button
         showPulseEffect();        // Add pulsing effect to the first radio button
       });
       suggestionsContainer.appendChild(div);
@@ -492,7 +492,7 @@
     firstRadio.classList.add('pulse');
     setTimeout(() => {
       firstRadio.classList.remove('pulse');  // Remove pulse after 3 seconds
-    }, 5000);
+    }, 7500);
   }
 
   function autoSelectRadioButton() {
