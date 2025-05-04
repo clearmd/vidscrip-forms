@@ -265,7 +265,7 @@
           </div>
           <div class="w-25">
             <label for="address2" class="form-label">Address 2</label>
-            <input type="text" id="address2" name="address2" class="form-control" tabindex="4" autocomplete="address-line2" />
+            <input type="text" id="address2" name="address2" class="form-control" autocomplete="address-line2" />
           </div>
           <div id="suggestions" class="autocomplete-suggestions"></div>
         </div>
@@ -273,12 +273,12 @@
         <div class="mb-3 d-flex">
           <div class="me-3 w-75">
             <label for="city" class="form-label form-value-required">City</label>
-            <input type="text" id="city" name="city" class="form-control" required tabindex="5" autocomplete="city" />
+            <input type="text" id="city" name="city" class="form-control" required tabindex="4" autocomplete="city" />
           </div>
         
           <div class="w-25">
             <label for="state" class="form-label form-value-required">State</label>
-            <select id="state" name="state" class="form-control" required tabindex="6" autocomplete="state">
+            <select id="state" name="state" class="form-control" required tabindex="5" autocomplete="state">
               <option value=""></option> <!-- Placeholder option -->
             </select>
           </div>
@@ -286,7 +286,7 @@
         
         <div class="mb-3">
           <label for="postal_code" class="form-label form-value-required">Postal Code</label>
-          <input type="text" id="postal_code" name="postal_code" class="form-control" required tabindex="7" autocomplete="postal-code" />
+          <input type="text" id="postal_code" name="postal_code" class="form-control" required tabindex="6" autocomplete="postal-code" />
         </div>
         
         <input type="hidden" id="country" name="country" class="form-control" readonly/>
@@ -429,21 +429,10 @@
   const apiKey = 'AIzaSyDUJf5RwRQeWlPhraU89seR4kHfUmaiJL0';
 
   function initForm() { 
-    form.addEventListener("input", function () {
-      // Manually check if at least one radio button is selected
-      // const radioButtons = document.querySelectorAll('input[name="consent"]:checked');
-      // const isRadioSelected = radioButtons.length > 0;
-
-      // Enable submit button only if form is valid AND at least one radio button is checked
-      submitBtn.disabled = !form.checkValidity() || !isRadioSelected;
-
-      console.log(`submitBtn.disabled`, submitBtn.disabled)
-
-      initDob();
-      setStateAbbreviations();
-      // Initialize the autocomplete functionality
-      initAutocomplete();
-    });
+    initDob();
+    setStateAbbreviations();
+    // Initialize the autocomplete functionality
+    initAutocomplete();
   }
 
   // Initialize the Google Places Autocomplete
