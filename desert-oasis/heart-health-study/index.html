@@ -319,11 +319,11 @@
     <a href="https://studio.vidscrip.com/?utm_source=vidscrip-form-dohc"><img src="../assets/icon.png" alt="Vidscrip Icon" class="footer-icon"></a>
     <div class="mb-3">
       <p class="footer-text">
-        Powered by <span class="fw-bolder"><span class="vidscrip-text">Vidscrip</span>Forms</span>
+        Powered by <span class="fw-normal"><span class="vidscrip-text">Vidscrip</span>Forms</span>
       </p>
       <p class="footer-text vidscrip-tagline">HIPAA-compliant forms for your practice.</p>
     </div>
-    <p class="footer-text fw-lighter">©<span id="currentYear"></span> Clear.md Inc.</p>
+    <p class="footer-text">©<span id="currentYear"></span> Clear.md Inc.</p>
   </div>
 
   <script>
@@ -404,13 +404,26 @@
 
   const apiKey = 'AIzaSyDUJf5RwRQeWlPhraU89seR4kHfUmaiJL0';
 
+  function initForm() { 
+    form.addEventListener("input", function () {
+      // Manually check if at least one radio button is selected
+      const radioButtons = document.querySelectorAll('input[name="consent"]:checked');
+      const isRadioSelected = radioButtons.length > 0;
+
+      // Enable submit button only if form is valid AND at least one radio button is checked
+      submitBtn.disabled = !form.checkValidity() || !isRadioSelected;
+
+      setDobDefaultTo18YearsAgo();
+      setStateAbbreviations();
+      // Initialize the autocomplete functionality
+      initAutocomplete();
+    });
+  }
+
   // Initialize the Google Places Autocomplete
   async function initAutocomplete() {
     const input = document.getElementById('address');
     const suggestionsContainer = document.getElementById('suggestions');
-
-    setDobDefaultTo18YearsAgo();
-    setStateAbbreviations();
     
     input.addEventListener('input', async () => {
       const query = input.value.trim();
@@ -464,8 +477,8 @@
         populateAddressFields(suggestion.placePrediction.placeId);
         suggestionsContainer.innerHTML = '';
         suggestionsContainer.style.display = 'none';
-        autoSelectRadioButton();  // Automatically select the first radio button
-        showPulseEffect();        // Add pulsing effect to the first radio button
+
+        onAddressSelect();
       });
       suggestionsContainer.appendChild(div);
     });
@@ -540,6 +553,7 @@
   function autoSelectRadioButton() {
     const firstRadio = document.getElementById('start');
     firstRadio.checked = true;
+    
   }
 
   function setDobDefaultTo18YearsAgo() {
@@ -566,6 +580,12 @@
     });
   }
 
+  // Add these functions after address selection
+  function onAddressSelect() {
+    autoSelectRadioButton();
+    showPulseEffect();
+  }
+
   // Init Google Maps
   (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
     key: apiKey,
@@ -573,8 +593,7 @@
     v: "weekly",
   });
 
-  // Initialize the autocomplete functionality
-  initAutocomplete();
+  initForm();
 </script>
   
 </body>
