@@ -170,11 +170,11 @@
       animation: pulse-animation 1s ease-out 0s 3; /* Pulses for 3 cycles */
     }
 
-    /* Add red asterisk for required fields */
-    form .form-label:after {
+    /* Add red asterisk for required fieslds */
+    .form-value-required:after {
       content: '*';
       color: red;
-      margin-left: 5px;
+      margin-left: 3px;
     }
 
     @keyframes pulse-animation {
@@ -207,51 +207,50 @@
         <!-- Hidden field for Response Id -->
         <input type="hidden" id="responseId" name="responseId" value="">
       
-        <div class="mb-3 d-flex">
-          <div class="me-3 w-100">
-            <label for="name" class="form-label">Name:</label>
-            <input type="text" id="name" name="name" class="form-control" required tabindex="1" autocomplete="name">
-          </div>
-          <div class="me-3">
-            <label for="dob" class="form-label">Date of Birth:</label>
-            <input type="date" id="dob" name="dob" class="form-control" required tabindex="7"  />
-          </div>
+        <div class="mb-3">
+          <label for="name" class="form-label form-value-required">Name</label>
+          <input type="text" id="name" name="name" class="form-control" required tabindex="1" autocomplete="name">
+        </div>
+
+        <div class="mb-3">
+          <label for="dob" class="form-label form-value-required">Date of Birth</label>
+          <input type="date" id="dob" name="dob" class="form-control" required tabindex="7"  />
         </div>
       
         <div class="mb-3 address-container">
-          <label for="address" class="form-label">Address:</label>
+          <label for="address" class="form-label form-value-required">Address</label>
           <input type="text" id="address" name="address" class="form-control" required tabindex="2" autocomplete="address-line1" />
           <div id="suggestions" class="autocomplete-suggestions"></div>
         </div>
         
         <!-- Additional Address Fields -->
         <div class="mb-3">
-          <label for="address2" class="form-label">Address 2:</label>
+          <label for="address2" class="form-label">Address 2</label>
           <input type="text" id="address2" name="address2" class="form-control" tabindex="3" autocomplete="address-line2" />
         </div>
 
         <div class="mb-3 d-flex">
           <div class="me-3 w-100">
-            <label for="city" class="form-label">City:</label>
+            <label for="city" class="form-label form-value-required">City</label>
             <input type="text" id="city" name="city" class="form-control" required tabindex="4" autocomplete="city" />
           </div>
         
           <div class="me-3">
-            <label for="state" class="form-label">State:</label>
+            <label for="state" class="form-label form-value-required">State</label>
             <select id="state" name="state" class="form-control" required tabindex="5" autocomplete="state">
               <option value=""></option> <!-- Placeholder option -->
             </select>
           </div>
-        
-          <div class="me-3">
-            <label for="postal_code" class="form-label">Postal Code:</label>
-            <input type="text" id="postal_code" name="postal_code" class="form-control" required tabindex="6" autocomplete="postal-code" />
-          </div>
         </div>
         
-        <input type="hidden" id="country" name="country" class="form-control" readonly required/>
+        <div class="mb-3">
+          <label for="postal_code" class="form-label form-value-required">Postal Code</label>
+          <input type="text" id="postal_code" name="postal_code" class="form-control" required tabindex="6" autocomplete="postal-code" />
+        </div>
+        
+        <input type="hidden" id="country" name="country" class="form-control" readonly/>
       
-        <div class="mt-3 consent-text text-left">
+        <div class="my-3 consent-text text-left">
 
           <div class="separator"></div>
           
@@ -259,15 +258,18 @@
           
           <div class="separator mb-6"></div>
       
-          <div class="form-check">
-            <input type="radio" id="start" name="consent" value="I'm ready to get started" class="form-check-input" required>
-            <label for="start" class="form-check-label">I'm ready to get started.</label>
+          <div class="my-3">
+            <div class="form-check">
+              <input type="radio" id="start" name="consent" value="I'm ready to get started" class="form-check-input" required>
+              <label for="start" class="form-check-label">I'm ready to get started.</label>
+            </div>
+        
+            <div class="form-check">
+              <input type="radio" id="wait" name="consent" value="Wait - please have someone from DOHC contact me" class="form-check-input" required>
+              <label for="wait" class="form-check-label">Wait - please have someone from DOHC contact me to answer my questions before sending the Zio monitor.</label>
+            </div>
           </div>
-      
-          <div class="form-check">
-            <input type="radio" id="wait" name="consent" value="Wait - please have someone from DOHC contact me" class="form-check-input" required>
-            <label for="wait" class="form-check-label">Wait - please have someone from DOHC contact me to answer my questions before sending the Zio monitor.</label>
-          </div>
+
         </div>
       
         <button type="submit" class="btn btn-custom text-white submit-btn my-6" id="submitBtn" disabled>Submit</button>
@@ -503,8 +505,9 @@
      dobField.addEventListener('focus', function() {
       const today = new Date();
       const eighteenYearsAgo = new Date(today.setFullYear(today.getFullYear() - 18));
-      dobField.value = eighteenYearsAgo;
-      // dobField.min = eighteenYearsAgo.toISOString().split('T')[0]; // Set minimum date to 18 years ago
+      const sixtyFiveYearsAgo = new Date(today.setFullYear(today.getFullYear() - 65));
+      dobField.value = sixtyFiveYearsAgo.toISOString().split('T')[0]; // Set default date to 65 years ago
+      dobField.min = eighteenYearsAgo.toISOString().split('T')[0]; // Set minimum date to 18 years ago
     });
   }
 
