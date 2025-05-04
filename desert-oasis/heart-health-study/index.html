@@ -244,7 +244,7 @@
       <h1 class="mb-4">Heart Health Monitoring Signup</h1>
       <p class="text-left">We appreciate your decision to take this proactive step with Desert Oasis Healthcare towards better heart health. To continue with your participation and receive the iRhythm Zio monitor by mail at no cost to you, please enter your information below.</p>
 
-      <form id="infoForm" action="https://script.google.com/macros/s/AKfycbxZMgasauf6tn0JgVim2ws9UqVS0W5H42xb1kgkvZrXgrN5HN1IwZHx9EGydro6LlF2/exec" method="POST" onsubmit="showLoadingState();">
+      <form id="infoForm" action="https://script.google.com/macros/s/AKfycbwPcmAQQON8H6eNtZwyhJQq5bbAUEKLDrFTACRLm0C0HSGOBVeyjTJi9IZix1EKS0JG/exec" method="POST" onsubmit="showLoadingState();">
         <!-- Hidden field for Response Id -->
         <input type="hidden" id="responseId" name="responseId" value="">
       
@@ -389,7 +389,7 @@
     // Ensure the form only handles POST request
     form.addEventListener("submit", function(event) {
       event.preventDefault(); // Prevent actual form submission for demo
-      fetch('https://script.google.com/macros/s/AKfycbxZMgasauf6tn0JgVim2ws9UqVS0W5H42xb1kgkvZrXgrN5HN1IwZHx9EGydro6LlF2/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbwPcmAQQON8H6eNtZwyhJQq5bbAUEKLDrFTACRLm0C0HSGOBVeyjTJi9IZix1EKS0JG/exec', {
         method: 'POST',
         body: new FormData(event.target)
       })
