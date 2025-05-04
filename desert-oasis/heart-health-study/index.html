@@ -192,6 +192,30 @@
       }
     }
 
+    /* Styling for the footer */
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      margin-top: 20px;
+      padding: 10px 0;
+    }
+
+    .footer-icon {
+      width: 40px;
+      margin-bottom: 10px;
+    }
+
+    .footer-text {
+      margin: 5px 0;
+    }
+
+    .vidscrip-text {
+      color: rgb(215, 127, 33); /* Orange color as per the icon */
+    }
+    .vidscrip-tagline {
+      color: rgb(80, 80, 80);
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
@@ -289,6 +313,21 @@
     <div class="spinner-border my-5" role="status" style="margin: auto"></div>
     <p>Please wait while we submit your information...</p>
   </div>
+
+  <!-- Footer Section -->
+  <div class="footer">
+    <img src="../assets/icon.png" alt="Vidscrip Icon" class="footer-icon">
+    <p class="footer-text">
+      <span class="vidscrip-text">Powered by Vidscrip</span>Forms
+    </p>
+    <p class="footer-text vidscrip-tagline">HIPAA-compliant forms for your practice.</p>
+    <p class="footer-text">©<span id="currentYear"></span> Clear.md Inc.</p>
+  </div>
+
+  <script>
+    // Set the current year dynamically
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+  </script>
 
   <!-- Bootstrap JS and Popper.js (optional for some components) -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
