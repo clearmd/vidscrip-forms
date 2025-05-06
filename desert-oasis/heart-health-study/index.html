@@ -431,8 +431,8 @@
   function initForm() { 
     initDob();
     setStateAbbreviations();
-    // Initialize the autocomplete functionality
     initAutocomplete();
+    populateResponseId();
   }
 
   // Initialize the Google Places Autocomplete
@@ -600,6 +600,21 @@
   function onAddressSelect() {
     // autoSelectRadioButton();
     showPulseEffect();
+  }
+
+  function populateResponseId() {
+    window.onload = function() {
+      // Get the URL query parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      
+      // Extract the responseId from the URL
+      const responseId = urlParams.get('responseId');
+      
+      // Set the value of the hidden input field with the id 'responseId'
+      if (responseId) {
+        document.getElementById('responseId').value = responseId;
+      }
+    };
   }
 
   // Init Google Maps
