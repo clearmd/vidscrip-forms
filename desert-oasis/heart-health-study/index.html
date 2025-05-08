@@ -293,7 +293,7 @@
         <input type="hidden" id="country" name="country" class="form-control" readonly/>
       
         <div class="my-3 consent-text text-left">
-
+          
           <div class="separator"></div>
           
           <label for="consent" class="form-label">By submitting this form, I authorize Desert Oasis Healthcare to share and use my health information as necessary to coordinate and provide the Zio monitor service. I consent to be contacted by DOHC or iRhythm regarding this request by phone, email, or text, in accordance with HIPAA privacy rules.</label><br>
@@ -302,7 +302,7 @@
       
           <div class="my-3 mb-6">
             <div class="form-check">
-              <input type="radio" id="start" name="consent" value="I'm ready to get started" class="form-check-input" checked>
+              <input type="radio" id="start" name="consent" value="I'm ready to get started" class="form-check-input">
               <label for="start" class="form-check-label">I'm ready to get started.</label>
             </div>
         
@@ -313,7 +313,7 @@
           </div>
 
         </div>
-      
+
         <button type="submit" class="btn btn-custom text-white submit-btn my-6" id="submitBtn" disabled>Submit</button>
       </form>
   </div>
@@ -563,7 +563,7 @@
     firstRadio.classList.add('pulse');
     setTimeout(() => {
       firstRadio.classList.remove('pulse');  // Remove pulse after 3 seconds
-    }, 7500);
+    }, 8000);
   }
 
   function autoSelectRadioButton() {
@@ -599,7 +599,7 @@
 
   // Add these functions after address selection
   function onAddressSelect() {
-    // autoSelectRadioButton();
+    autoSelectRadioButton();
     showPulseEffect();
   }
 
