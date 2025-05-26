@@ -29,8 +29,8 @@
 
     /* Style for the submit button when it's disabled */
     .btn-custom:disabled {
-      background-color: rgb(117 183 241); /* Lighter blue to indicate disabled state */
-      border-color: rgb(117 183 241);
+      background-color: rgb(180, 180, 180); /* Lighter blue to indicate disabled state */
+      border-color: rgb(180, 180, 180);
       cursor: not-allowed; /* Ensure the cursor stays as "not-allowed" */
       opacity: 0.9; /* Slightly reduce opacity for the disabled state */
     }
@@ -302,12 +302,12 @@
       
           <div class="my-3 mb-6">
             <div class="form-check">
-              <input type="radio" id="start" name="consent" value="I'm ready to get started" class="form-check-input">
+              <input type="radio" id="start" name="consent" value="I'm ready to get started" class="form-check-input" required>
               <label for="start" class="form-check-label">I'm ready to get started.</label>
             </div>
         
             <div class="form-check">
-              <input type="radio" id="wait" name="consent" value="Wait - please have someone from DOHC contact me" class="form-check-input">
+              <input type="radio" id="wait" name="consent" value="Wait - please have someone from DOHC contact me" class="form-check-input" required>
               <label for="wait" class="form-check-label">Wait - please have someone from DOHC contact me to answer my questions before sending the Zio monitor.</label>
             </div>
           </div>
